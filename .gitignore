@@ -133,3 +133,4 @@ dmypy.json
 
 # Don't include config
 config.json
+*.json
