@@ -4,7 +4,7 @@ A repository demonstrating a project setup using the Azure Machine Learning Clou
 The notebook `notebooks/pipeline-setup.ipynb` can be used to create a test AML pipeline which runs a simple test script on an AML hosted compute.  
 
 ### Local Environment 
-A local environment will need to be created to correctly install the Azure SKD packages. We use `pipenv` environments to manage the local env.   
+A local environment will need to be created to correctly install the [Azure SKD packages](https://github.com/Azure/azure-sdk). We use `pipenv` environments to manage the local env.   
 To install use the development environment run:   
 `pipenv install --dev`
 
@@ -36,5 +36,5 @@ This repo is just a simple demo and can be used as a starting point to developin
 
 ### Github Workflow
 The Github Workflow is triggered upon a Pull Request into the main branch. This workflow includes:
-- **flake8**: which verifies PEP8 rules/coding standards are kept.
-- **pytest**: which triggers the pytests included in the repo.
+- **[flake8](https://flake8.pycqa.org/en/latest/)**: which verifies PEP8 rules/coding standards are kept.
+- **[pytest](https://docs.pytest.org/en/7.1.x/)**: which triggers the pytests included in the repo.
