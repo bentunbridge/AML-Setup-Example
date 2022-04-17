@@ -35,6 +35,6 @@ jobs:
       # Runs flake8 and pytests
       - name: Run Tests
         run: |
-        pipenv install --dev
-        pipenv run flake8
-        pipenv run pytest
+          pipenv install --dev
+          pipenv run flake8
+          pipenv run pytest
