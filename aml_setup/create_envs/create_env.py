@@ -44,7 +44,7 @@ def create_env(ws: Any,
     return env
 
 
-def get_hash():
+def get_hash() -> str:
     """Function to generate a datetime based hash.
 
     Returns:
@@ -53,7 +53,7 @@ def get_hash():
     return datetime.now().strftime("%Y%m%d%H%M%S")
 
 
-def get_new_version(version):
+def get_new_version(version: str) -> str:
     """Create ne hash string version. This is because Azure ML cannot upload and overwrite
         existing wheel versions
 
@@ -66,7 +66,8 @@ def get_new_version(version):
     new_version = f"{version}-{get_hash()}"
     return new_version
 
-def clone_wheel(wheel_path, new_version):
+def clone_wheel(wheel_path: str,
+                new_version: str) -> str:
     """Clone the wheel file provided to a new version identifier
 
     Args:
@@ -81,12 +82,18 @@ def clone_wheel(wheel_path, new_version):
     return new_wheel_path
 
 
-def create_env_dir(ws, env_out_dir, version, overwrite=True, wheel_path=None):
+def create_env_dir(ws: Any,
+                   env_name: str,
+                   env_out_dir: str,
+                   version: str,
+                   overwrite: bool = True,
+                   wheel_path: Optional[str] = None) -> str:
     """Function to create the environment files required to run an experiment with
         required packages.
 
     Args:
         ws (Any): The aml workspace used
+        env_name (str): Environment Name
         env_out_dir (str): Path to output directory of the environment created.
         version (str): Version of code
         overwrite (bool, optional): If True, overwrite the environment local path. Defaults to True.
@@ -97,10 +104,10 @@ def create_env_dir(ws, env_out_dir, version, overwrite=True, wheel_path=None):
         str: Output environment full path i.e. env_out_dir/{environment_name_and_version}
     """
     new_version = get_new_version(version)
-    env_name = f"test-env-{new_version}"
+    env_name_ = f"{env_name}-{new_version}"
     if wheel_path:
         wheel_path = clone_wheel(wheel_path, new_version)
-    env = create_env(ws, env_name, wheel_path)
+    env = create_env(ws, env_name_, wheel_path)
     env_out_path = os.path.join(env_out_dir, env_name)
     env.save_to_directory(env_out_path, overwrite=overwrite)
     print(f"save to: {env_out_path}")
