@@ -132,4 +132,4 @@ dmypy.json
 .pyre/
 
 # Don't include config
-config.json.example
+config.json
