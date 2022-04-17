@@ -23,16 +23,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # InstallDependencies
-      - name: Install Dependencies
+      # Setup and InstallDependencies
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.8.5'
+      - name: Install dependencies
         run: |
-        set -e
-        python -m pip install importlib-metadata==1.7.0
-        python -m pip install --upgrade pip setuptools wheel twine pipenv
+          python -m pip install --upgrade pip setuptools pipenv
+          pipenv install --dev
 
       # Runs flake8 and pytests
       - name: Run Tests
         run: |
-        pipenv install --dev
         pipenv run flake8
         pipenv run pytest
