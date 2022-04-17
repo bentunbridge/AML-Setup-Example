@@ -23,6 +23,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      # InstallDependencies
+      - name: Install Dependencies
+        run: |
+        set -e
+        python -m pip install importlib-metadata==1.7.0
+        python -m pip install --upgrade pip setuptools wheel twine pipenv
+
       # Runs flake8 and pytests
       - name: Run Tests
         run: |
